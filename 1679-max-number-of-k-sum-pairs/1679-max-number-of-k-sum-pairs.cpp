@@ -1,7 +1,7 @@
 class Solution {
 public:
     int maxOperations(vector<int>& nums, int k) {
-        map<int, int> mp;
+        unordered_map<int, int> mp;
         int count=0;
         for(auto x:nums){
             int target=k-x;
