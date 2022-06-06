@@ -19,8 +19,7 @@ public:
             if(b==NULL) b=headA;
             else b=b->next;
         }
-        
-        // ListNode*temp=NULL;
+
         return a;
     }
 };
