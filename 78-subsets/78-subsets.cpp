@@ -7,7 +7,9 @@ public:
             return;
         }
         
-        solution(nums, i+1,n,ans,temp);
+        solution(nums, i+1,n,ans,temp);//not included
+        
+        //included and move on
         temp.push_back(nums[i]);
         solution(nums, i+1,n,ans,temp);
         
