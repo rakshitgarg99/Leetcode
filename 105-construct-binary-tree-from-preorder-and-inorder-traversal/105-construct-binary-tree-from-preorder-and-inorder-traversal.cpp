@@ -12,21 +12,6 @@
 class Solution {
 public:
     
-    
-    
-    
-    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
-        map<int,int> inmap;
-        for(int i=0;i<inorder.size();i++){
-            inmap[inorder[i]]=i;
-        }
-        
-        TreeNode* root = buildTree(preorder,0,preorder.size()-1,
-                                   inorder,0,inorder.size()-1, inmap);
-        
-        return root;
-    }
-    
     TreeNode* buildTree(vector<int>& preorder,int pstart, int pend,
                         vector<int>& inorder, int istart, int iend,
                         map<int,int> &inmap){
@@ -53,6 +38,21 @@ public:
         
         
     }
+    
+    
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+        map<int,int> inmap;
+        for(int i=0;i<inorder.size();i++){
+            inmap[inorder[i]]=i;
+        }
+        
+        TreeNode* root = buildTree(preorder,0,preorder.size()-1,
+                                   inorder,0,inorder.size()-1, inmap);
+        
+        return root;
+    }
+    
+    
     
     
 };
