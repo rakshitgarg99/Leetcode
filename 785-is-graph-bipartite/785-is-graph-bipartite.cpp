@@ -2,17 +2,20 @@ class Solution {
 public:
     
     
-    bool bipartiteDfs(int node, vector<int> adj[], int color[]) {
-    for(auto it : adj[node]) {
-        if(color[it] == -1) {
-            color[it] = 1 - color[node];
-            if(!bipartiteDfs(it, adj, color)) {
-                return false; 
+    bool isbip(vector<int> adj[],int i, int color[]){
+    
+        if(color[i]==-1) color[i]=1;
+        
+        for(auto x: adj[i]){
+            if(color[x]==-1){
+                color[x]=1-color[i];
+                if(!isbip(adj,x,color)) return false;
             }
-        } else if(color[it] == color[node]) return false; 
+            else if(color[i]==color[x]) return false;
+        }
+        
+        return true;
     }
-    return true; 
-}
     
     bool isBipartite(vector<vector<int>>& graph) {
         
@@ -29,15 +32,13 @@ public:
         
         // vector<int> color(v,-1);
         int color[v];
-    memset(color, -1, sizeof color); 
-    for(int i = 0;i<v;i++) {
-        if(color[i] == -1) {
-            color[i] = 1;
-            if(!bipartiteDfs(i, adj, color)) {
-                return false;
+        memset(color, -1, sizeof color);
+        for(int i=0;i<v;i++){
+            if(color[i]==-1){
+                if(!isbip(adj,i,color)) return false;
             }
-        } 
-    }
-    return true;
+        }
+        
+        return true;
     }
 };
