@@ -31,11 +31,37 @@ public:
         
         
         // vector<int> color(v,-1);
-        int color[v];
-        memset(color, -1, sizeof color);
+//         int color[v];
+//         memset(color, -1, sizeof color);
+//         for(int i=0;i<v;i++){
+//             if(color[i]==-1){
+//                 if(!isbip(adj,i,color)) return false;
+//             }
+//         }
+        
+//         return true;
+        
+        
+        
+        vector<int> color(v,-1);
+        
         for(int i=0;i<v;i++){
             if(color[i]==-1){
-                if(!isbip(adj,i,color)) return false;
+        queue<int> q;
+        q.push(i);
+        color[i]=1;
+        while(!q.empty()){
+            int node=q.front();
+            q.pop();
+            
+            for(auto x:adj[node]){
+                if(color[x]==-1){
+                    q.push(x);
+                    color[x]=1-color[node];
+                }
+                else if(color[x]==color[node]) return false;
+            }
+        }
             }
         }
         
