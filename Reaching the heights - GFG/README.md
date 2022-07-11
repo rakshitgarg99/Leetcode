@@ -1,5 +1,5 @@
 # Reaching the heights
-## Medium 
+##  Medium 
 <div class="problem-statement">
                 <p></p><p><span style="font-size:18px">The teacher gives a mental ability question to Raju. The question is as follows:-</span></p>
 
