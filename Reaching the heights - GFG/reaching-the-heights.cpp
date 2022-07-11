@@ -41,16 +41,11 @@ vector<int> reaching_height(int n, int a[]) {
     
     sort(a, a+n);
     
-    
-    int l=0, r=n-1;
-    
-    int cnt=0;
-    for(int i=1;i<n;i++){
-        if(a[i]==a[i-1]){cnt++;}
+    if (a[0] == a[n-1]){
+        return {-1};
     }
     
-    
-    if(cnt==n-1) return {-1};
+    int l=0, r=n-1;
     vector<int> ans;
     while(r>l){
         ans.push_back(a[r]);
