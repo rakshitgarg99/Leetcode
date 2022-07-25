@@ -1,29 +1,29 @@
 class Solution {
 public:
     
-    int solve(vector<int>&nums,int i, int prev){
-        if(i>=nums.size())return 0;
+    int solve(vector<int>& nums, int idx, int prev_idx, vector<vector<int>> &dp){
+        if(idx==nums.size()) return 0;
         
-        int dontTake = solve(nums, i + 1, prev);
-        int take=0;
-        if(nums[i]>prev) take=1+solve(nums,i+1,nums[i]);
+        if(dp[idx][prev_idx+1]!=-1) return dp[idx][prev_idx+1];
         
-        return max(take,dontTake);
+        
+        int take{};
+        int donttake = solve(nums, idx+1,prev_idx,dp);
+        if(prev_idx==-1 or nums[idx]>nums[prev_idx]){
+            take = 1+solve(nums, idx+1,idx,dp);
+        }
+        
+        return dp[idx][prev_idx+1] = max(take, donttake);
+        
     }
+    
     int lengthOfLIS(vector<int>& nums) {
         int n=nums.size();
-        // return solve(nums,0,INT_MIN);
+        vector<vector<int>> dp(n+1, vector<int>(n+1, -1));
+        return solve(nums, 0, -1, dp);
         
-        vector<int> lis(n,1);
-        int mx=1;
-        for(int i=0;i<n;i++){
-            for(int j=0;j<i;j++){
-                if(nums[i]>nums[j] and lis[i]<=lis[j]){
-                    lis[i]+=1;
-                }
-                mx=max(mx,lis[i]);
-            }
-        }
-        return mx;
+        // vector<vector<int>> dp(n, vector<int>(n+1, -1));
+        
+        // for(int i=0;i<)
     }
 };
