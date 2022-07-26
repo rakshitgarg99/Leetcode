@@ -22,6 +22,8 @@ public:
         // vector<vector<int>> dp(n+1, vector<int>(n+1, -1));
         // return solve(nums, 0, -1, dp);
         
+        
+        // <------Bottom up------>
 //         vector<vector<int>> dp(n+1, vector<int>(n+1, 0));
         
 //         for(int idx=n-1;idx>=0;idx--){
@@ -38,17 +40,38 @@ public:
         
 //         return dp[0][0];
         
-        int maxi=1;
-        vector<int> dp(n+1,1);
-        for(int idx=0;idx<n;idx++){
-            for(int prev_idx=0;prev_idx<idx;prev_idx++){
-                if(nums[prev_idx]<nums[idx]){
-                    dp[idx] = max(1+dp[prev_idx], dp[idx]);
-                }
-            }
-            maxi = max(maxi, dp[idx]);
-        }
         
-        return maxi;
+        // <-----Tabulation------>
+//         int maxi=1;
+//         vector<int> dp(n+1,1);
+//         for(int idx=0;idx<n;idx++){
+//             for(int prev_idx=0;prev_idx<idx;prev_idx++){
+//                 if(nums[prev_idx]<nums[idx]){
+//                     dp[idx] = max(1+dp[prev_idx], dp[idx]);
+//                 }
+//             }
+//             maxi = max(maxi, dp[idx]);
+//         }
+        
+//         return maxi;
+        
+        // <-----------Binary Search--------->
+        
+        vector<int> temp;
+        temp.push_back(nums[0]);
+        int len=1;
+        for(int i=1;i<n;i++){
+            if(nums[i]>temp.back()){
+                temp.push_back(nums[i]);
+                len++;
+            }
+            else{
+                int idx = lower_bound(temp.begin(), temp.end(), nums[i]) - temp.begin();
+                temp[idx] = nums[i];
+            }
+        }
+        return len;
+        
+        
     }
 };
