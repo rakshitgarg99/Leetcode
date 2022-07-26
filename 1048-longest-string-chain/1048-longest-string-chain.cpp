@@ -28,7 +28,7 @@ public:
         sort(words.begin(), words.end(), comp);
         
         int n=words.size();
-        vector<int> dp(n,1);
+        vector<int> dp(n+1,1);
         int maxi = 1;
         for(int i=0;i<n;i++){
             for(int prev=0;prev<i;prev++){
